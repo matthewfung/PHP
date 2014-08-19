@@ -37,7 +37,7 @@ function selectionSort($array){
 	return $array;
 }
 
-$array = array(2,4,7,1,4,2,1,2);
+$array = fillArray();
 $array = selectionSort($array);
 var_dump($array);
 ?>
