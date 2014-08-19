@@ -22,26 +22,15 @@ function swapValues($array, $index1, $index2){
 }
 
 function selectionSort($array){
-	$min = PHP_INT_MAX; 
-	$min_index = 0;
-
-	$max = -PHP_INT_MAX;
-	$max_index = 0;
-	for($i=0; $i<count($array); $i++){
-		$min = $array[$i];
+	for($i=0; $i<=count($array)-$i-1; $i++){
 		$min_index = $i;
-		$max = $array[$i];
-		$max_index = $i;
-		for($j=$i+1; $j<count($array); $j++){
-			if($array[$j] < $min){
-				$min = $array[$j];
+		$max_index = count($array)-$i-1;
+		for($j=$i+1; $j<=count($array)-$i-1; $j++){
+			if($array[$j] < $array[$min_index])
 				$min_index = $j;
-			}
-			else if($array[$j] > $max){
-				$max = $array[$j];
+			if($array[$j] > $array[$max_index])
 				$max_index = $j;
-			}
-		}
+		 }
 		$array = swapValues($array, $min_index, $i);
 		$array = swapValues($array, $max_index, $j-1);
 	}
@@ -53,7 +42,6 @@ $array = selectionSort(fillArray());
 $time_end = microtime_float();
 $duration = $time_end - $time_start;
 echo $duration;
-
 var_dump($array);
 
 ?>
