@@ -37,7 +37,7 @@ function selectionSort($array){
 				$min = $array[$j];
 				$min_index = $j;
 			}
-			if($array[$j] > $max){
+			else if($array[$j] > $max){
 				$max = $array[$j];
 				$max_index = $j;
 			}
@@ -48,7 +48,12 @@ function selectionSort($array){
 	return $array;
 }
 
+$time_start = microtime_float();
 $array = selectionSort(fillArray());
+$time_end = microtime_float();
+$duration = $time_end - $time_start;
+echo $duration;
+
 var_dump($array);
 
 ?>
