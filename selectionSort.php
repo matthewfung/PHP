@@ -1,4 +1,10 @@
 <?php 
+function microtime_float()
+{
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
+}
+
 function fillArray(){
 	$array = array();
 	for($i=0; $i<100; $i++){
@@ -22,6 +28,10 @@ function selectionSort($array){
 	$max = -PHP_INT_MAX;
 	$max_index = 0;
 	for($i=0; $i<count($array); $i++){
+		$min = $array[$i];
+		$min_index = $i;
+		$max = $array[$i];
+		$max_index = $i;
 		for($j=$i+1; $j<count($array); $j++){
 			if($array[$j] < $min){
 				$min = $array[$j];
@@ -31,13 +41,14 @@ function selectionSort($array){
 				$max = $array[$j];
 				$max_index = $j;
 			}
-			
 		}
-		$array = swapValues($array, $min_index, $max_index);
+		$array = swapValues($array, $min_index, $i);
+		$array = swapValues($array, $max_index, $j-1);
 	}
 	return $array;
 }
 
 $array = selectionSort(fillArray());
 var_dump($array);
+
 ?>
