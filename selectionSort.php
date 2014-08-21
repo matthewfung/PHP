@@ -7,8 +7,8 @@ function microtime_float()
 
 function fillArray(){
 	$array = array();
-	for($i=0; $i<100; $i++){
-		$array[] = rand(0,10000);
+	for($i=0; $i<10; $i++){
+		$array[] = rand(0,9);
 	}
 	return $array;
 }
@@ -24,7 +24,7 @@ function swapValues($array, $index1, $index2){
 function selectionSort($array){
 	for($i=0; $i<=count($array)-$i-1; $i++){
 		$min_index = $i;
-		$max_index = count($array)-$i-1;
+		$max_index = $i;
 		for($j=$i+1; $j<=count($array)-$i-1; $j++){
 			if($array[$j] < $array[$min_index])
 				$min_index = $j;
@@ -32,7 +32,9 @@ function selectionSort($array){
 				$max_index = $j;
 		 }
 		$array = swapValues($array, $min_index, $i);
-		$array = swapValues($array, $max_index, $j-1);
+		if($max_index == $i)
+			$max_index = $min_index;
+		$array = swapValues($array, count($array)-$i-1, $max_index);
 	}
 	return $array;
 }
